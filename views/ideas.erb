@@ -55,12 +55,12 @@
 
               <% if idea.favorites.exists? %>
               <form action="/ideas/<%= idea.id %>/update" method="post">
-                <input type="submit" value="解除" class="btn btn-outline-warning ">
+                <input type="submit" value="お気に入り" class="btn btn-warning text-white">
               </form>
 
               <% else %>
               <form action="/ideas/<%= idea.id %>/update" method="post">
-                <input type="submit" value="お気に入り" class="btn btn-warning text-white">
+                <input type="submit" value="解除" class="btn btn-outline-warning ">
               </form>
               <% end %>
 
