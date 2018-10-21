@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>思いつきをアイデアにしよう Idea</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <script type="text/javascript" src="/js/main.js"></script>
+  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="/js/popper.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+</head>
+
+<body onload="addSample3();addSample2();addSample1();addSample();date();">
+  <% if !current_user.nil? %>
+  <div class="container">
+    <div class="row">
+      <div class="card" style="width: 100%;">
+        <div class="card-header" style="background: #10a0e0; color: #fff;">
+          <span class="glyphicon-glyphicon-triangle-right"></span>アイデアをまとめる
+        </div>
+        <div class="card-body">
+
+          <script>
+            /**
+            * 確認ダイアログの返り値によりフォーム送信
+            */
+            function submitChk() {
+              /* 確認ダイアログ表示 */
+              var flag = confirm("投稿してもよろしいですか？\n\n投稿したくない場合は[キャンセル]ボタンを押して下さい");
+              /* send_flg が TRUEなら送信、FALSEなら送信しない */
+              return flag;
+            }
+            function submitChk1() {
+            /* 確認ダイアログ表示 */
+            var flag = confirm("リセットしてもよろしいですか？\n\nリセットしたくない場合は[キャンセル]ボタンを押して下さい");
+            /* send_flg が TRUEなら送信、FALSEなら送信しない */
+            return flag;
+            }
+          </script>
+
+          <form action="/ideas" method="post" id="ideaform" onsubmit="return submitChk()" onreset="return submitChk1()"></form>
+          <div class="form-group">
+            <label for="description">
+              <h5 style="font-weight: bold;">どんなサイト・アプリ？ (必須)</h5>
+            </label>
+            <br>
+            <input required type="text" name="description" id="description" placeholder="アイデアを簡単にまとめれられるサイト""" form="ideaform"
+              class="border border-danger" style="width: 50%;">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="about">
+              <h5 style="font-weight: bold;">サービスの簡単な説明をしよう (必須)</h5>
+            </label>
+            <br>
+            <textarea class="border border-danger" required name="about" rows="3" id="about" placeholder="このサービスは、Webサービスやアプリを作ろうと思ってるけどアイデアが思い浮かばない！という人をターゲットに様々な質問をもとにアイデアを考えまとめられるサービスで、考えたアイデアは投稿し色々な人達からコメントや資金をもらうことができます。"
+              form="ideaform"></textarea>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="concept">
+              <h5 style="font-weight: bold;">サービスのコンセプトを決めよう (必須)</h5>(これからWebサービスを何のために作り、ユーザーに何を伝えるのかを決め<br>どのようにユーザーに感じてもらいたいか考える。コンセプトはなるべくシンプルな一つの文章にまとめる。)
+            </label>
+            <input type="text" name="concept" id="concept" form="ideaform" placeholder="思いつきをアイデアにしよう" required style="width: 50%;"
+              class="border border-danger">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="name">
+              <h5>サービス名を決めよう</h5>(サービスのコンセプトが伝わる、どんなサービスなのか、何に関係するサービスなのか、<br>誰がターゲットなのかがサービス名で分かるとサービスをより多くの人に興味を持ってもらうことができます。)
+            </label>
+            <br>
+            <input type="text" name="name" id="name" form="ideaform" placeholder="Quesdia" style="width: 50%;">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="why">
+              <h5 style="font-weight: bold;">なぜ作る (必須)</h5>
+            </label>
+            <br>
+            <textarea class="border border-danger" required name="why" rows="4" cols="99" maxlength="200" id="why"
+              placeholder="「なんとなく作りたいものは浮かんできたけど、アイデアがまとまらない！どうしたら良いのかわからない！」という時にアイデアを簡単にまとめられて、そのアイデアを共有しあうものがあったら、より良いアイデアが浮かんでくるのではないかと思い、このサービスを考えました。"
+              form="ideaform"></textarea>
+          </div><br>
+          <div class="form-group">
+            <label for="TextSample_1">サービスのコア機能を決めよう (絶対に必要な機能)</label>
+            <br>
+            <form name="frmSampleRegist" method="POST" action="ideaform">
+              <div id="TextSample"></div>
+              <input type="button" class="addbutton" id="btnSampleAdd" value="追加" onclick="addSample()">
+              <input type="button" id="btnSampleDel" value="削除" onclick="delSample()">
+            </form>
+          </div>
+          <div class="form-group">
+            <label for="TextSample1_1">サービスのサブ機能も決めよう (無くても良いけどあれば便利な機能)</label>
+            <br>
+            <form name="frmSampleRegist1" method="POST" action="ideaform">
+              <div id="TextSample1"></div>
+              <input type="button" id="btnSampleAdd1" value="追加" onclick="addSample1()">
+              <input type="button" id="btnSampleDel1" value="削除" onclick="delSample1()">
+            </form>
+          </div>
+          <div class="form-group">
+            <label for="TextSample2_1">どんなデバイス・言語・技術を使う？</label>
+            <br>
+            <form name="frmSampleRegist2" method="POST" action="ideaform">
+              <div id="TextSample2"></div>
+              <input type="button" id="btnSampleAdd2" value="追加" onclick="addSample2()">
+              <input type="button" id="btnSampleDel2" value="削除" onclick="delSample2()">
+            </form>
+          </div><br>
+          <div class="form-group">
+            <h5>ターゲットユーザー</h5>・年齢
+            <br>
+            <input type="checkbox" name="age[]" value="10" form="ideaform">10代
+            <br>
+            <input type="checkbox" name="age[]" value="20" form="ideaform">20代
+            <br>
+            <input type="checkbox" name="age[]" value="30" form="ideaform">30代
+            <br>
+            <input type="checkbox" name="age[]" value="40" form="ideaform">40代
+            <br>
+            <input type="checkbox" name="age[]" value="50" form="ideaform">50代～
+            <br>
+            <br>・性別
+            <br>
+            <input type="checkbox" name="gender[]" value="男" form="ideaform">男
+            <input type="checkbox" name="gender[]" value="女" form="ideaform">女
+            <br>
+            <br>・職業
+            <br>
+            <input type="text" name="target_user" placeholder="学生,プログラマー" value="" form="ideaform">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="whom">誰に使う？</label>
+            <br>
+            <input name="whom" id="whom" placeholder=" 何かサイトやアプリを作りたいけど、うまくアイデアがまとまらない人" form="ideaform" style="width: 50%;">
+            </input>
+          </div>
+          <div class="form-group">
+            <label for="when">いつ使う？</label>
+            <br>
+            <input style="width: 50%;" name="when" id="when" placeholder="アイデアがしっかりとまとまらない時。" form="ideaform">
+          </div>
+          <div class="form-group">
+            <label for="where">どこで使う？</label>
+            <br>
+            <input style="width: 50%;" name="where" id="where" placeholder="パソコンやスマホなどで使えるWebサイト上で！" form="ideaform">
+          </div>
+          <div class="form-group">
+            <label for="how">どうやって使う？</label>
+            <br>
+            <textarea name="how" rows="2" cols="50" maxlength="200" id="how" placeholder=" アイデアを考えるサイトで質問に答えながらアイデアをまとめていく。すぐアイデアを考えるときだけではなく、じっくり考える人でも使える。また、アイデアに対して意見を言える。"
+              form="ideaform"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="howmany">どのくらいの規模？</label>
+            <br>
+            <textarea name="howmany" rows="2" cols="50" maxlength="200" id="howmany" placeholder="最初はアイデアがうまくまとまらない、プログラミングスクールの友達に使ってもらえるぐらいの小規模"
+              form="ideaform"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="howmuch">いくらで？</label>
+            <br>
+            <input style="width: 50%;" name="howmuch" id="howmuch" placeholder="誰にでも使えるように無料で" form="ideaform">
+          </div>
+          <div class="form-group">
+            <label for="howlong">どのくらいの間で作る？いつリリースする？</label>
+            <br>
+            <input style="width: 50%;" name="howlong" id="howlong" placeholder="今年の夏までにベータリリース・デバックして今年中にリリースする！" form="ideaform">
+          </div>
+          <div class="form-group">
+            <label for="TextSample3_1">似ているサービスは？</label>
+            <br>
+            <form name="frmSampleRegist3" method="POST" action="ideaform">
+              <div id="TextSample3"></div>
+              <input type="button" id="btnSampleAdd3" value="追加" onclick="addSample3()">
+              <input type="button" id="btnSampleDel3" value="削除" onclick="delSample3()">
+            </form>
+          </div>
+          <div class="form-group">
+            <label for="servicedifference">そのサービスより優れているところは？</label>
+            <br>
+            <input style="width: 50%;" name="servicedifference" id="servicedifference" placeholder="" form="ideaform">
+          </div><br>
+          <div class="form-group">
+            <label for="last">
+              <h5 style="font-weight: bold;">最終的にどうなってほしい？ (必須)</h5>
+            </label>
+            <br>
+            <textarea class="border border-danger" required name="last" rows="2" cols="50" maxlength="200" id="last"
+              placeholder="最終的にはお気に入りやTwitterなどと連携することや資金などを送れるようにしてさらにより良いアイデアを作れるようにする。" form="ideaform"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="email">メールアドレス</label>
+            <br>
+            <input style="width: 50%;" type="email" name="email" id="email" placeholder="※メールアドレスはアイデア上に公開されます。" form="ideaform">
+          </div>
+          <div class="form-group">
+            <label for="other">その他・感想・質問</label>
+            <br>
+            <textarea name="other" id="other" rows="4" cols="40" placeholder="その他、感想や質問はこちら" form="ideaform"></textarea>
+          </div>
+          <input type="submit" class="btn btn-info" form="ideaform">
+          <input type="reset" class="btn btn-outline-danger" form="ideaform">
+        </div>
+      </div>
+    </div>
+  </div>
+  <% else %>
+
+  <body onLoad=setTimeout("location.href='/'")></body>
+  <% end %>
+</body>
+<style>
+  input {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-radius: 10px;
+    padding: 2px 8px;
+    display: inline-block;
+  }
+
+
+  textarea {
+    width: 80%;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 10px;
+    padding: 2px 8px;
+    display: inline-block;
+    display: inline;
+
+  }
+
+  .jumbotron {
+    background-image: url('image/bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left center;
+    color: white;
+    height: 500px;
+    width: 100%;
+  }
+
+  @font-face {
+    font-family: 'MyFont';
+    src: url(font/webfont.ttf);
+  }
+
+  .inner {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+  }
+
+  .footer>.container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+</style>
+
+</html>

@@ -1,0 +1,88 @@
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>思いつきをアイデアにしよう Idea</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/js/popper.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+</head>
+
+<body class="text-center">
+    <% if !current_user.nil? %>
+    <% else %>
+    <form class="form-signup" action="/signup" name="signup" id="signup" method="post">
+        <h1 class="h3 mb-3 font-weight-normal">新規登録</h1>
+        <br>
+        <p>未記入の場合、ボタンは無効になります</p>
+        <label for="inputUsername" class="sr-only">名前</label>
+        <input name="username" type="text" id="inputUsername" class="form-control" placeholder="名前を入力してください(日本語でも可)" required="" autofocus="" onchange="checkbutton();">
+        <label for="inputEmail" class="sr-only">Eメールアドレス</label>
+        <input name="mail" type="email" id="inputEmail" class="form-control" placeholder="Eメールアドレスを入力してください" required=""
+            autofocus="" onchange="checkbutton();">
+        <label for="inputPassword" class="sr-only">パスワード</label>
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="パスワード 4文字以上20文字以内"
+            required="" autofocus="" onchange="checkbutton();">
+        <label for="inputPassword" class="sr-only">パスワードをもう一度入力</label>
+        <input name="password_confirmation" type="password" id="inputPassword" class="form-control" placeholder="パスワードをもう一度入力" required="" autofocus="" onchange="checkbutton();">
+        <br>
+        <script type="text/javascript" script src="/js/main.js"></script>
+        <script>
+            function checkbutton() {
+                var username = document.signup.elements[0].value;
+                var email = document.signup.elements[1].value;
+                var password = document.signup.elements[2].value;
+                var password_confirmation = document.signup.elements[3].value;
+
+                if ((username == "") || (email == "") || (password == "") || (password_confirmation == "")) {
+                    document.getElementById("submit").disabled = "disabled";
+                } else {
+                    document.getElementById("submit").disabled = "";
+                }
+            }
+
+            function checkPassword(e) {
+                pass = document.getElementById("inputPassword");
+                if (e.checked) {
+                    pass.setAttribute("type", "text");
+                } else {
+                    pass.setAttribute("type", "password");
+                }
+            }
+        </script>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> 記憶する
+            </label>
+        </div>
+        <input class="btn btn-outline-danger" name="submit" id="submit" type="submit" value="新規登録" disabled>
+    </form>
+    <% end %>
+</body>
+
+<style>
+    .form-signup input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signup .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .form-signup {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+    }
+</style>

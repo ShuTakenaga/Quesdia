@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>思いつきをアイデアにしよう Idea</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="/js/popper.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/main.js"></script>
+</head>
+
+<body>
+  <% if !current_user.nil? %>
+  <div class="container" id="information">
+    <div class="row">
+      <div class="card" style="width: 1200px;">
+        <div class="card-header" style="background: #10a0e0; color: #fff;"><span class="glyphicon-glyphicon-triangle-right"></span>アイデアをまとめよう！</div>
+        <div class="card-body">
+
+          <% if @idea.description == "" %>
+          <% else %>
+          <div class="form-group">
+
+            <p>
+              <h5 style="display:inline">どんなサイト・アプリ？：
+                <%= CGI.escapeHTML(@idea.description) %>
+              </h5>
+            </p>
+          </div><br>
+          <% end %>
+
+          <% if @idea.about == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5 style="display:inline">サービスの簡単な説明：
+              <%= CGI.escapeHTML(@idea.about) %>
+            </h5>
+          </div><br>
+          <% end %>
+
+          <% if @idea.concept == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>サービスのコンセプト</h5>
+            <ul>
+              <li class="li">
+                <%= CGI.escapeHTML(@idea.concept) %>
+            </ul>
+            </li>
+          </div><br>
+          <% end %>
+
+          <% if @idea.name == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>サービス名</h5>
+            <ul>
+              <li class="li">
+                <%= CGI.escapeHTML(@idea.name) %>
+            </ul>
+            </li>
+          </div><br>
+          <% end %>
+
+          <% if @idea.why == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>なぜ作る？</h5>
+            <ul>
+              <li class="li">
+                <%= CGI.escapeHTML(@idea.why) %>
+              </li>
+            </ul>
+          </div><br>
+          <% end %>
+
+          <% if @idea.core == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>サービスのコア機能</h5>
+            <% eval(@idea.core).each do |core| %>
+            <ul>
+              <li class="li">
+                <%= core %>
+              </li>
+            </ul>
+            <% end %>
+          </div><br>
+          <% end %>
+
+          <% if @idea.sab == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>サービスのサブ機能</h5>
+            <% eval(@idea.sab).each do |sab| %>
+            <ul>
+              <li class="li">
+                <%= sab %>
+              </li>
+            </ul>
+            <% end %>
+          </div><br>
+          <% end %>
+
+          <% if @idea.technology == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>どんなデバイス・言語・技術を使う？</h5>
+            <% eval(@idea.technology).each do |technology| %>
+            <ul>
+              <li class="li">
+                <%= technology %>
+              </li>
+            </ul>
+            <% end %>
+          </div><br>
+          <% end %>
+
+
+          <div class="form-group">
+            <h5>ターゲットユーザー</h5>
+
+            <% if @idea.age == "" %>
+            <% else %>
+            <ul>
+              <li class="li">年齢<span>
+                  <% unless @idea.age.nil?%>
+                  <%= CGI.escapeHTML(@idea.age) %>代
+                  <% end %>
+                </span> </li>
+            </ul>
+            <% end %>
+
+            <% if @idea.gender == "" %>
+            <% else %>
+            <ul>
+              <li class="li">性別 <span>
+                  <% unless @idea.gender.nil?%>
+                  <%= CGI.escapeHTML(@idea.gender) %>
+
+                  <% end %>
+                </span></li>
+            </ul>
+            <% end %>
+
+            <% if @idea.target_user == "" %>
+            <% else %>
+            <ul>
+              <li class="li">職業 <span>
+                  <% unless @idea.target_user.nil?%>
+
+                  <%= CGI.escapeHTML(@idea.target_user) %>
+
+                  <% end %>
+                </span></li>
+            </ul>
+            <% end %>
+
+          </div><br>
+
+          <% if @idea.whom == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>誰に使う？</h5>
+            <ul>
+              <li class="li">
+                <% unless @idea.whom.nil?%>
+
+                <%= CGI.escapeHTML(@idea.whom) %>
+
+                <% end %>
+              </li>
+            </ul>
+          </div><br>
+          <% end %>
+
+
+          <% if @idea.when == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>いつ使う？</h5>
+            <ul>
+              <li class="li">
+
+                <%= CGI.escapeHTML(@idea.when) %>
+
+              </li>
+            </ul>
+          </div><br>
+          <% end %>
+
+          <% if @idea.where == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>どこで使う？</h5>
+            <ul>
+              <li class="li">
+                <% unless @idea.where.nil?%>
+
+                <%= CGI.escapeHTML(@idea.where) %>
+
+                <% end %>
+              </li>
+            </ul>
+          </div><br>
+          <% end %>
+
+          <% if @idea.how == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>どうやって使う？</h5>
+            <ul>
+              <li class="li">
+                <% unless @idea.how.nil?%>
+
+                <%= CGI.escapeHTML(@idea.how) %>
+
+                <% end %>
+              </li>
+            </ul>
+          </div><br>
+          <% end %>
+
+          <% if @idea.howmany == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>どのくらいの規模？</h5>
+            <ul>
+              <li class="li">
+                <% unless @idea.howmany.nil?%>
+
+                <%= CGI.escapeHTML(@idea.howmany) %>
+
+                <% end %>
+              </li>
+            </ul>
+          </div><br>
+          <% end %>
+
+          <% if @idea.howmuch == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>いくらで？</h5>
+            <ul>
+              <li class="li">
+                <% unless @idea.howmuch.nil?%>
+
+                <%= CGI.escapeHTML(@idea.howmuch) %>
+
+                <% end %>
+              </li>
+            </ul>
+          </div><br>
+          <% end %>
+
+          <% if @idea.howlong == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>どのくらいの間で作る？いつリリースする？</h5>
+            <ul>
+              <li class="li">
+                <% unless @idea.howlong.nil?%>
+
+                <%= CGI.escapeHTML(@idea.howlong) %>
+
+                <% end %>
+              </li>
+            </ul>
+          </div><br>
+          <% end %>
+
+          <% if @idea.last == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>最終的にどうなってほしい？</h5>
+            <ul>
+              <li class="li">
+
+                <%= CGI.escapeHTML(@idea.last) %>
+
+              </li>
+            </ul>
+          </div><br>
+          <% end %>
+
+          <% if @idea.servicename == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>似ているサービスは？</h5>
+            <% unless @idea.servicename.nil?%>
+            <% eval(@idea.servicename).each do |servicename| %>
+            <ul>
+              <li class="li">
+
+                <%= servicename %>
+
+              </li>
+            </ul>
+            <% end %>
+            <% end %>
+          </div>
+          <% end %>
+
+          <% if @idea.servicedifference == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>そのサービスより優れているところは？</h5>
+            <ul>
+              <li class="li">
+                <% unless @idea.servicedifference.nil?%>
+
+                <%= CGI.escapeHTML(@idea.servicedifference) %>
+
+                <% end %>
+              </li>
+            </ul>
+          </div><br>
+          <% end %>
+
+          <% if @idea.email == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>メールアドレス</h5>
+            <ul>
+              <li class="li">
+                <% unless @idea.email.nil?%>
+
+                <%= CGI.escapeHTML(@idea.email) %>
+
+                <% end %>
+              </li>
+            </ul>
+          </div><br>
+          <% end %>
+
+          <div class="form-group">
+            <h5>日付</h5>
+            <ul>
+              <li class="li">
+                <%= @idea.created_at %>
+              </li>
+            </ul>
+          </div><br>
+
+          <% if @idea.other == "" %>
+          <% else %>
+          <div class="form-group">
+            <h5>その他・感想・質問</h5>
+            <ul>
+              <li class="li">
+                <% unless @idea.other.nil?%>
+
+                <%= CGI.escapeHTML(@idea.other) %>
+
+                <% end %>
+              </li>
+            </ul>
+          </div>
+          <% end %>
+
+          <a href="/ideas" class="btn btn-outline-info">戻る</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <% else %>
+
+  <body onLoad=setTimeout("location.href='/'")></body>
+  <% end %>
+</body>
+
+</html>
+
+<style>
+  .li {
+    list-style: disc;
+    padding-left: 1em;
+    text-indent: -1em;
+    list-style-position: inside;
+  }
+</style>

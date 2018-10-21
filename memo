@@ -1,0 +1,14 @@
+Heroku 再アップロード
+  git add -A .
+  git commit -m 'コメント'
+  git push heroku master
+  heroku run rake db:migrate
+
+お気に入り
+  post '/ideas/:id/update' do
+  @idea = Idea.find_by(user_id: params[:user_id])
+    idea = Idea.find(params[:id])
+    idea.favorite = !idea.favorite
+    idea.save
+    redirect "/ideas"
+end

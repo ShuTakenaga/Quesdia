@@ -1,0 +1,23 @@
+current directory: /Users/Shu/Desktop/My Folder/Programming/program/Life is Tech/original/idea new/vendor/bundle/ruby/2.5.0/gems/bcrypt-3.1.12/ext/mri
+/Users/Shu/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20180617-16937-1mo6vix.rb extconf.rb
+creating Makefile
+
+current directory: /Users/Shu/Desktop/My Folder/Programming/program/Life is Tech/original/idea new/vendor/bundle/ruby/2.5.0/gems/bcrypt-3.1.12/ext/mri
+make "DESTDIR=" clean
+
+current directory: /Users/Shu/Desktop/My Folder/Programming/program/Life is Tech/original/idea new/vendor/bundle/ruby/2.5.0/gems/bcrypt-3.1.12/ext/mri
+make "DESTDIR="
+compiling bcrypt_ext.c
+compiling crypt.c
+compiling crypt_blowfish.c
+compiling crypt_gensalt.c
+compiling wrapper.c
+linking shared-object bcrypt_ext.bundle
+ld: warning: URGENT: building for OSX, but linking against dylib (/usr/lib/libpthread.dylib) built for (unknown). Note: This will be an error in the future.
+ld: warning: URGENT: building for OSX, but linking against dylib (/usr/lib/libdl.dylib) built for (unknown). Note: This will be an error in the future.
+ld: warning: URGENT: building for OSX, but linking against dylib (/usr/lib/libSystem.dylib) built for (unknown). Note: This will be an error in the future.
+ld: warning: URGENT: building for OSX, but linking against dylib (/usr/lib/libobjc.dylib) built for (unknown). Note: This will be an error in the future.
+
+current directory: /Users/Shu/Desktop/My Folder/Programming/program/Life is Tech/original/idea new/vendor/bundle/ruby/2.5.0/gems/bcrypt-3.1.12/ext/mri
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bcrypt_ext.bundle ./.gem.20180617-16937-fp6163
