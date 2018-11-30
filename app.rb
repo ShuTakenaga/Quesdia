@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'bundler/setup'
 Bundler.require
 require 'sinatra/reloader' if development?
@@ -5,13 +6,14 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require './models'
 require 'sinatra/flash'
+require 'open-uri'
+require 'sinatra/json'
+require './image_uploader.rb'
 
 enable :sessions
 
 configure :production do
 end
-
-
 
 helpers do
   def current_user
@@ -19,13 +21,6 @@ helpers do
   end
 end
 
-before '/dashborad' do
-    Cloudinary.config do |config|
-            config.cloud_name = ''
-            config.api_key = ''
-            config.api_secret = ''
-    end
-end
 
 get '/' do
   erb :index
@@ -34,7 +29,7 @@ end
 get '/ideas' do
   @ideas = Idea.all
   @users = User.all
-  @favorites = Idea.all.limit(10).order("created_at desc")
+  @favorites = Idea.all.limit(10).order('created_at desc')
   @favorites = Idea.where(favorite: true)
   erb :ideas
 end
@@ -42,7 +37,6 @@ end
 get '/newidea' do
   erb :newidea
 end
-
 
 get '/signup' do
   erb :sign_up
@@ -54,17 +48,15 @@ post '/signup' do
       mail: params[:mail],
       password: params[:password],
       password_confirmation: params[:password_confirmation],
-      img: params[:img]
-)
+  )
   if user.persisted?
     session[:user] = user.id
-    flash[:notice] = "登録が完了しました"
+    flash[:notice] = '登録が完了しました'
     redirect '/'
   else
-    flash[:notice] = "すでに登録をされているメールアドレスを使用されている。または、パスワードが正しくありません"
+    flash[:notice] = 'すでに登録をされているメールアドレスを使用されている。または、パスワードが正しくありません'
     redirect '/signup'
   end
-
 end
 
 get '/signin' do
@@ -73,15 +65,14 @@ end
 
 post '/signin' do
   user = User.find_by(mail: params[:mail])
-  if user && user.authenticate(params[:password])
+  if user&.authenticate(params[:password])
     session[:user] = user.id
-    flash[:notice] = "ログインしました"
+    flash[:notice] = 'ログインしました'
     redirect '/'
   else
-    flash[:notice] = "メールアドレス、もしくはパスワードが間違っています"
+    flash[:notice] = 'メールアドレス、もしくはパスワードが間違っています'
     redirect '/signin'
   end
-  
 end
 
 get '/signout' do
@@ -91,32 +82,38 @@ end
 
 post '/ideas' do
   current_user.ideas.create(
-    description: params[:description],
-    about: params[:about],
-    concept: params[:concept],
-    name: params[:name],
-    core: params[:core].inspect,
-    sab: params[:sab].inspect,
-    technology: params[:technology].inspect,
+      description: params[:description],
+      about: params[:about],
+      concept: params[:concept],
+      name: params[:name],
+      core: params[:core].inspect,
+      sab: params[:sab].inspect,
+      technology: params[:technology].inspect,
 
-    age: params[:age],
-    gender: params[:gender],
-    target_user: params[:target_user],
+      age: params[:age],
+      gender: params[:gender],
+      target_user: params[:target_user],
 
-    whom: params[:whom],
-    when: params[:when],
-    where: params[:where],
-    why: params[:why],
-    how: params[:how],
-    howmany: params[:howmany],
-    howmuch: params[:howmuch],
-    howlong: params[:howlong],
-    last: params[:last],
-    servicename: params[:servicename].inspect,
-    servicedifference: params[:servicedifference],
-    email: params[:email],
-    other: params[:other]
+      whom: params[:whom],
+      when: params[:when],
+      where: params[:where],
+      why: params[:why],
+      how: params[:how],
+      howmany: params[:howmany],
+      howmuch: params[:howmuch],
+      howlong: params[:howlong],
+      last: params[:last],
+      servicename: params[:servicename].inspect,
+      servicedifference: params[:servicedifference],
+      email: params[:email],
+      other: params[:other],
+      img: ""
   )
+
+  if params[:file]
+    image_upload(params[:file])
+  end
+
   redirect '/ideas'
 end
 
@@ -134,20 +131,17 @@ end
 
 post '/ideas/:id/delete' do
   @idea = Idea.find_by(user_id: params[:user_id])
-    idea = Idea.find(params[:id])
-    idea.delete
-    redirect '/ideas'
+  idea = Idea.find(params[:id])
+  idea.delete
+  redirect '/ideas'
 end
 
 post '/ideas/:id/update' do
   @idea = Idea.find_by(user_id: params[:user_id])
-    idea = Idea.find(params[:id])
-    idea.favorites.each do |fav|
-    favid = fav.id
-    Favorite.delete(favid)
-    end
-    idea.save
-    redirect "/ideas"
+  idea = Idea.find(params[:id])
+  idea.favorites = !idea.favorites
+  idea.save
+  redirect '/ideas'
 end
 
 get '/dashboard' do
@@ -155,6 +149,6 @@ get '/dashboard' do
 end
 
 post '/dashboard' do
-    flash[:notice] = "画像を変更しました"
-    redirect '/dashboard'
+  flash[:notice] = '画像を変更しました'
+  redirect '/dashboard'
 end

@@ -10,6 +10,8 @@ gem 'sinatra-activerecord'
 gem "pry"
 
 gem 'cloudinary'
+gem 'json'
+gem 'carrierwave'
 gem 'dotenv'
 
 gem 'bcrypt'

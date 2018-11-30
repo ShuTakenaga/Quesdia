@@ -25,7 +25,7 @@ class CreateIdeas < ActiveRecord::Migration[5.2]
       t.text :email
       t.text :other #その他
       t.text :comment #コメント
-      t.string :user_id
+      t.integer :user_id
 
       t.timestamps null: false
     end
