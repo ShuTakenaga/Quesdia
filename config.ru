@@ -1,3 +1,5 @@
+ #! ruby -EUTF-8
+ # -*- mode:ruby; coding:utf-8 -*-
 require 'bundler'
 Bundler.require
 

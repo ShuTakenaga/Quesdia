@@ -6,3 +6,7 @@ Heroku 再アップロード
 
 rackup config.ru -p 4567
 
+export CLOUD_NAME=dfeolg6uh;
+export CLOUDINARY_API_KEY=378544829137726
+export CLOUDINARY_API_SECRET=xJxS7W2eV82Y3RkpSuxhGzxq-Zs
+export | grep CLOUD

@@ -1,4 +1,5 @@
-# frozen_string_literal: true
+ #! ruby -EUTF-8
+ # -*- mode:ruby; coding:utf-8 -*-
 require 'bundler/setup'
 Bundler.require
 require 'sinatra/reloader' if development?
@@ -32,6 +33,13 @@ get '/ideas' do
   @favorites = Idea.all.limit(10).order('created_at desc')
   @favorites = Idea.where(favorite: true)
   erb :ideas
+end
+
+get '/favorites' do
+  @ideas = Idea.all
+  @users = User.all
+  @fav = current_user.favorites.all
+  erb :favorites
 end
 
 get '/newidea' do
@@ -107,7 +115,8 @@ post '/ideas' do
       servicedifference: params[:servicedifference],
       email: params[:email],
       other: params[:other],
-      img: ""
+      img: "",
+      user_id: current_user.id
   )
 
   if params[:file]
@@ -137,10 +146,14 @@ post '/ideas/:id/delete' do
 end
 
 post '/ideas/:id/update' do
-  @idea = Idea.find_by(user_id: params[:user_id])
-  idea = Idea.find(params[:id])
-  idea.favorites = !idea.favorites
-  idea.save
+  if current_user.favorites.where(idea_id: params[:id]).blank? then
+  current_user.favorites.create(
+    idea_id: params[:id]
+  )
+  else
+    fav = current_user.favorites.where(idea_id: params[:id])
+    fav.destroy_all
+  end
   redirect '/ideas'
 end
 

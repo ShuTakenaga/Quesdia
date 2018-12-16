@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>思いつきをアイデアにしよう Idea</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="/js/popper.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/main.js"></script>
+</head>
+<body>
+<% if !current_user.nil? %>
+  <div class="container">
+    <div class="row">
+      <div class="card" style="width: 100%;">
+        <div class="card-header"><span class="glyphicon-glyphicon-triangle-right"></span>
+          <div class="panel-body"></div>
+          <h2 style="font-weight: bold;">お気に入り一覧</h2>
+          <% @fav.each do |fav| %>
+          <% unless fav.idea.nil? %>
+          <% unless fav.user.id == current_user.id %>
+            <div class="card" style="width: 50rem;">
+              <div class=" card-body">
+                <div class="panel-body">
+                  <p><%= fav.user.username %> さん</p>
+                  <h2><a style="font-weight: bold;" href="/ideas/ <%= fav.idea.id %>/information">
+                    <%= fav.idea.description %></a></h2>
+                  <p style="display:inline">サービスの簡単な説明：<span style="font-weight: bold;"><%= fav.idea.about %></span></p><br>
+                  <p style="display:inline">サービスのコンセプト：<span style="font-weight: bold;"><%= fav.idea.concept %></span></p>
+                  <br><p><%= fav.idea.created_at.in_time_zone('Japan').strftime("%Y-%m-%d %H:%M:%S") %></p><br>
+                  <% unless fav.idea.img.empty? %>
+                    <img class="card-img-top" src="<%= fav.idea.img %>" style="width: 25rem;">
+                  <% end %>
+                  
+                  <% unless fav.idea.user_id.nil? %>
+                    <% if fav.idea.user_id == current_user.id %>
+                    <% else %>
+                      <% if current_user.favorites.where(idea_id: fav.idea.id).blank? %>
+                        
+                      <% else %>
+                        <form action="/ideas/<%= fav.idea.id %>/update" method="post">
+                          <input type="submit" value="解除" class="btn btn-outline-warning ">
+                        </form>
+                        <% end %>
+                    <% end %>
+                  <% end %>
+
+                  <% unless fav.idea.user_id.nil? %>
+                    <% if fav.idea.user_id == current_user.id %>
+                      <form action="/ideas/<%= fav.idea.id %>/delete" method="post" onsubmit="return submitChk()">
+                        <input type="submit" value="削除" class="btn btn-outline-danger">
+                      </form>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <body onLoad=setTimeout("location.href='/'")></body>
+<% end %>
+</body>
+
+</html>
+
+<script>
+                      function submitChk() {
+                          var flag = confirm("削除してもよろしいですか？\n\n削除したくない場合は[キャンセル]ボタンを押して下さい");
+                          /* send_flg が TRUEなら送信、FALSEなら送信しない */
+                          return flag;
+                      }
+                  </script>

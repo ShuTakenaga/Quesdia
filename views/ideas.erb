@@ -24,23 +24,18 @@
             <div class="card" style="width: 50rem;">
               <div class=" card-body">
                 <div class="panel-body">
-                  <p><%= User.find_by(idea.user_id).username %> さん</p>
-                  <h2><a style="font-weight: bold;" href="/ideas/ <%= idea.id %>/information">
-                    <%= idea.description %></a></h2>
-                  <p style="display:inline">サービスの簡単な説明：<span style="font-weight: bold;"><%= idea.about %></span></p><br>
-                  <p style="display:inline">サービスのコンセプト：<span style="font-weight: bold;"><%= idea.concept %></span></p><br>
-                  <p>
-                    <%= idea.created_at.in_time_zone('Japan').strftime("%Y-%m-%d %H:%M:%S") %>
-                  </p>
+                  <p><%= User.find(idea.user_id).username %> さん</p>
+                  <h2><a style="font-weight: bold;" href="/ideas/ <%= idea.id %>/information"><%= idea.description %></a></h2>
+                  <p style="display:inline"><br><span style="font-weight: bold;"><%= idea.about %></span></p><br>
                   <br>
                   <% unless idea.img.empty? %>
-                    <img class="card-img-top" src="<%= idea.img %>" style="width: 25rem;">
+                    <img class="card-img-top" src="<%= idea.img %>" style="width: 22.5rem;">
                   <% end %>
-                  
-                  <% unless idea.users.first.nil? %>
-                    <% if idea.users.first.id == current_user.id %>
+                  <p><%= idea.created_at.in_time_zone('Japan').strftime("%Y-%m-%d %H:%M:%S") %></p>
+                  <% unless idea.user_id.nil? %>
+                    <% if idea.user_id == current_user.id %>
                     <% else %>
-                      <% if idea.favorites %>
+                      <% if current_user.favorites.where(idea_id: idea.id).blank? %>
                         <form action="/ideas/<%= idea.id %>/update" method="post">
                           <input type="submit" value="お気に入り" class="btn btn-warning text-white">
                         </form>
@@ -48,12 +43,12 @@
                         <form action="/ideas/<%= idea.id %>/update" method="post">
                           <input type="submit" value="解除" class="btn btn-outline-warning ">
                         </form>
-                      <% end %>
+                        <% end %>
                     <% end %>
                   <% end %>
 
-                  <% unless idea.users.first.nil? %>
-                    <% if idea.users.first.id == current_user.id %>
+                  <% unless idea.user_id.nil? %>
+                    <% if idea.user_id == current_user.id %>
                       <form action="/ideas/<%= idea.id %>/delete" method="post" onsubmit="return submitChk()">
                         <input type="submit" value="削除" class="btn btn-outline-danger">
                       </form>
@@ -75,9 +70,9 @@
 </html>
 
 <script>
-                      function submitChk() {
-                          var flag = confirm("削除してもよろしいですか？\n\n削除したくない場合は[キャンセル]ボタンを押して下さい");
-                          /* send_flg が TRUEなら送信、FALSEなら送信しない */
-                          return flag;
-                      }
-                  </script>
+ function submitChk() {
+    var flag = confirm("削除してもよろしいですか？\n\n削除したくない場合は[キャンセル]ボタンを押して下さい");
+      /* send_flg が TRUEなら送信、FALSEなら送信しない */
+      return flag;
+    }                                           
+</script>                     
