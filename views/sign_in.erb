@@ -3,7 +3,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>思いつきをアイデアにしよう Idea</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
@@ -17,52 +16,17 @@
     <% else %>
     <form class="form-signin" name="signin" id="signin" action="/signin" method="post">
         <h1 class="h3 mb-3 font-weight-normal">ログイン</h1><br>
-        <p>未記入の場合、ボタンは無効になります</p>
         <label for="inputEmail" class="sr-only">Eメールアドレス</label>
-        <input name="mail" type="email" id="inputEmail" class="form-control" placeholder="Eメールアドレス" required=""
-            autofocus="" onchange="checkbutton();">
+        <input name="mail" type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" onchange="checkbutton();">
         <label for="inputPassword" class="sr-only">パスワード</label>
-        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="パスワード" required=""
-            autofocus="" onchange="checkbutton();"><br>
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="" autofocus="" onchange="checkbutton();"><br>
         <span class="searchclear glyphicon glyphicon-remove-circle"></span>
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" onclick="checkPassword(this)" autofocus="">パスワードを表示
-                <br>
-            </label>
-            <label>
-                <input type="checkbox" value="remember-me">記憶する
-            </label>
-        </div>
-        <input class="btn btn-outline-info" id="submit" type="submit" disabled value="ログイン">
+        <input class="btn btn-outline-info" id="submit" type="submit" value="ログイン"><br><br>
+        <p>アカウントお持ちでない方は<a href="/signup">こちら</a></p>
     </form>
     <% end %>
 </body>
-
 <script type="text/javascript" script src="/js/main.js"></script>
-<script>
-    function checkbutton() {
-        var email = document.signin.elements[0].value;
-        var password = document.signin.elements[1].value;
-
-        if ((email == "") || (password == "")) {
-            document.getElementById("submit").disabled = "disabled";
-        } else {
-            document.getElementById("submit").disabled = "";
-        }
-    }
-
-    function checkPassword(e) {
-        pass = document.getElementById("inputPassword");
-        if (e.checked) {
-            pass.setAttribute("type", "text");
-        } else {
-            pass.setAttribute("type", "password");
-        }
-    }
-</script>
-
 <style>
     .form-signin input[type="email"] {
         margin-bottom: -1px;

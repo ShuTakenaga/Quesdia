@@ -2,7 +2,6 @@
 var SampleNum = 0; //コア機能
 var SampleNum1 = 0; //サブ機能
 var SampleNum2 = 0; //技術
-var SampleNum3 = 0; //似ているサービス
 function addSample() {
   var text = document.createElement('input');
   this.SampleNum++;
@@ -122,44 +121,6 @@ function delSample2() {
 }
 
 //-------------------------------------------------------------------
-//-------------------------------------------------------------------
-function addSample3() {
-  var text3 = document.createElement('input');
-  this.SampleNum3++;
-  text3.type = 'text3';
-  text3.id = 'TextSample3_' + this.SampleNum3;
-  text3.name = 'servicename[]';
-  text3.setAttribute("style", "width: 30%;");
-  text3.setAttribute("form", "ideaform");
-  text3.value = '';
-  var div3 = document.getElementById('TextSample3');
-  div3.appendChild(text3);
-  if (this.SampleNum3 % 5 == 0) {
-    // <br />を追加
-    div3.appendChild(document.createElement("br"));
-  }
-  document.frmSampleRegist3.btnSampleDel3.disabled = false;
-  if (this.SampleNum3 == 20) {
-    document.frmSampleRegist3.btnSampleAdd3.disabled = true;
-  } // ロード時の処理（削除ボタンの無効化）
-  if (this.SampleNum3 == 1) {
-    document.frmSampleRegist3.btnSampleDel3.disabled = true;
-  }
-}
-
-function delSample3() {
-  var div3 = document.getElementById('TextSample3');
-  if (this.SampleNum3 % 5 == 0) {
-    div3.removeChild(div3.lastChild); // <br />を削除
-  }
-  this.SampleNum3--;
-  div3.removeChild(div3.lastChild); // テキストボックスを削除
-  document.frmSampleRegist3.btnSampleAdd3.disabled = false;
-  if (this.SampleNum3 == 1) {
-    document.frmSampleRegist3.btnSampleDel3.disabled = true;
-  }
-}
-
 //-------------------------------------------------------------------
 function date() {
   var date = new Date();

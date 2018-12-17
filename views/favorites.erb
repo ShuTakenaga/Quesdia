@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>思いつきをアイデアにしよう Idea</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/style.css" rel="stylesheet">
   <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
@@ -27,21 +26,20 @@
               <div class=" card-body">
                 <div class="panel-body">
 
-                  <p><%= User.find(fav.idea.user_id).username %> さん</p>
+                  <p><%= User.find(fav.idea.user_id).username %>さん</p>
                   <h2><a style="font-weight: bold;" href="/ideas/ <%= fav.idea.id %>/information">
-                    <%= fav.idea.description %></a></h2>
-                  <p style="display:inline">サービスの簡単な説明：<span style="font-weight: bold;"><%= fav.idea.about %></span></p><br>
-                  <p style="display:inline">サービスのコンセプト：<span style="font-weight: bold;"><%= fav.idea.concept %></span></p>
-                  <br><p><%= fav.idea.created_at.in_time_zone('Japan').strftime("%Y-%m-%d %H:%M:%S") %></p><br>
+                  <%= fav.idea.description %></a></h2>
+                  <p><span style="font-weight: bold;">サービスの説明</span><br><%= fav.idea.about %></p><br>
+                  <p><span style="font-weight: bold;">コンセプト</span><br><%= fav.idea.concept %></p><br>
                   <% unless fav.idea.img.empty? %>
                     <img class="card-img-top" src="<%= fav.idea.img %>" style="width: 25rem;">
                   <% end %>
+                  <p><%= fav.idea.created_at.in_time_zone('Japan').strftime("%Y-%m-%d %H:%M:%S") %></p>
 
                   <% unless fav.idea.user_id.nil? %>
                     <% if fav.idea.user_id == current_user.id %>
                     <% else %>
                       <% if current_user.favorites.where(idea_id: fav.idea.id).blank? %>
-
                       <% else %>
                         <form action="/ideas/<%= fav.idea.id %>/update" method="post">
                           <input type="submit" value="解除" class="btn btn-outline-warning ">
@@ -75,9 +73,8 @@
 </html>
 
 <script>
-                      function submitChk() {
-                          var flag = confirm("削除してもよろしいですか？\n\n削除したくない場合は[キャンセル]ボタンを押して下さい");
-                          /* send_flg が TRUEなら送信、FALSEなら送信しない */
-                          return flag;
-                      }
-                  </script>
+    function submitChk() {  
+    var flag = confirm("削除してもよろしいですか？\n\n削除したくない場合は[キャンセル]ボタンを押して下さい");
+    return flag;
+    }
+</script>

@@ -45,8 +45,6 @@ ActiveRecord::Schema.define(version: 2018_11_04_070732) do
     t.string "howmuch"
     t.string "howlong"
     t.string "last"
-    t.string "servicename"
-    t.string "servicedifference"
     t.text "email"
     t.text "other"
     t.text "comment"

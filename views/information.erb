@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>思いつきをアイデアにしよう Idea</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/style.css" rel="stylesheet">
   <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
@@ -23,16 +22,13 @@
           <span class="glyphicon-glyphicon-triangle-right"></span><%= CGI.escapeHTML(@idea.description) %>
         </div>
         <div class="card-body">
-
           <% if @idea.img == "" %>
           <% else %>
             <div class="form-group">
             <img class="card-img-top" src="<%= CGI.escapeHTML(@idea.img) %>" style="width: 25rem;">
-              
             </div>
             <br>
           <% end %>
-
           <% if @idea.about == "" %>
           <% else %>
             <div class="form-group">
@@ -40,7 +36,6 @@
             </div>
             <br>
           <% end %>
-
           <% if @idea.concept == "" %>
           <% else %>
             <div class="form-group">
@@ -48,7 +43,6 @@
             </div>
             <br>
           <% end %>
-
           <% if @idea.name == "" %>
           <% else %>
             <div class="form-group">
@@ -56,7 +50,6 @@
             </div>
             <br>
           <% end %>
-
           <% if @idea.why == "" %>
           <% else %>
             <div class="form-group">
@@ -64,7 +57,6 @@
             </div>
             <br>
           <% end %>
-
           <% if @idea.core == "" %>
           <% else %>
             <div class="form-group">
@@ -173,22 +165,6 @@
             </div>
             <br>
           <% end %>
-
-          <% if @idea.servicename == "" %>
-          <% else %>
-            <div class="form-group">
-              <h5>似ているサービスは？<% unless @idea.servicename.nil? %><% eval(@idea.servicename).each do |servicename| %><ul><li class="li"><%= servicename %></li></ul><% end %><% end %></h5>
-            </div><br>
-          <% end %>
-
-          <% if @idea.servicedifference == "" %>
-          <% else %>
-            <div class="form-group">
-              <h5>そのサービスより優れているところは？：<% unless @idea.servicedifference.nil? %><%= CGI.escapeHTML(@idea.servicedifference) %><% end %></h5>
-            </div>
-            <br>
-          <% end %>
-
           <% if @idea.email == "" %>
           <% else %>
             <div class="form-group">
@@ -197,7 +173,7 @@
           <% end %>
 
           <div class="form-group">
-            <p>日付：<%= @idea.created_at %></p>
+            <p>日付：<%= @idea.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
           </div>
           <br>
 

@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>思いつきをアイデアにしよう Idea</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/style.css" rel="stylesheet">
   <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
@@ -25,9 +24,11 @@
               <div class=" card-body">
                 <div class="panel-body">
                   <p><%= User.find(idea.user_id).username %> さん</p>
-                  <h2><a style="font-weight: bold;" href="/ideas/ <%= idea.id %>/information"><%= idea.description %></a></h2>
-                  <p style="display:inline"><br><span style="font-weight: bold;"><%= idea.about %></span></p><br>
-                  <br>
+                  <h2><a style="font-weight: bold;" href="/ideas/ <%= idea.id %>/information">
+                  <%= idea.description %></a></h2>
+                  <p><span style="font-weight: bold;">サービスの説明</span><br><%= idea.about %></p><br>
+                  <p><span style="font-weight: bold;">コンセプト</span><br><%= idea.concept %></p><br>
+    
                   <% unless idea.img.empty? %>
                     <img class="card-img-top" src="<%= idea.img %>" style="width: 22.5rem;">
                   <% end %>
@@ -70,9 +71,8 @@
 </html>
 
 <script>
- function submitChk() {
+  function submitChk() {
     var flag = confirm("削除してもよろしいですか？\n\n削除したくない場合は[キャンセル]ボタンを押して下さい");
-      /* send_flg が TRUEなら送信、FALSEなら送信しない */
-      return flag;
-    }                                           
-</script>                     
+    return flag;
+  }
+</script>

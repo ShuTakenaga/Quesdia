@@ -22,7 +22,6 @@ helpers do
   end
 end
 
-
 get '/' do
   erb :index
 end
@@ -111,8 +110,6 @@ post '/ideas' do
       howmuch: params[:howmuch],
       howlong: params[:howlong],
       last: params[:last],
-      servicename: params[:servicename].inspect,
-      servicedifference: params[:servicedifference],
       email: params[:email],
       other: params[:other],
       img: "",

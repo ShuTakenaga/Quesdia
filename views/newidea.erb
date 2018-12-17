@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>思いつきをアイデアにしよう Idea</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <script type="text/javascript" src="/js/main.js"></script>
   <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="/js/popper.js"></script>
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-
 </head>
-
-<body onload="addSample3();addSample2();addSample1();addSample();date();">
+<body onload="addSample2();addSample1();addSample();date();">
 <% if !current_user.nil? %>
   <div class="container">
     <div class="row">
@@ -23,43 +19,20 @@
           <span class="glyphicon-glyphicon-triangle-right"></span>アイデアをまとめる
         </div>
         <div class="card-body">
-
-          <script>
-              /**
-               * 確認ダイアログの返り値によりフォーム送信
-               */
-              function submitChk() {
-                  /* 確認ダイアログ表示 */
-                  var flag = confirm("投稿してもよろしいですか？\n\n投稿したくない場合は[キャンセル]ボタンを押して下さい");
-                  /* send_flg が TRUEなら送信、FALSEなら送信しない */
-                  return flag;
-              }
-
-              function submitChk1() {
-                  /* 確認ダイアログ表示 */
-                  var flag = confirm("リセットしてもよろしいですか？\n\nリセットしたくない場合は[キャンセル]ボタンを押して下さい");
-                  /* send_flg が TRUEなら送信、FALSEなら送信しない */
-                  return flag;
-              }
-          </script>
-
           <form action="/ideas" method="post" id="ideaform" onsubmit="return submitChk()" onreset="return submitChk1()" enctype="multipart/form-data"></form>
           <div class="form-group">
             <label for="description">
               <h5 style="font-weight: bold;">どんなサイト・アプリ？ (必須)</h5>
             </label>
             <br>
-            <input required type="text" name="description" id="description" placeholder="アイデアを簡単にまとめれられるサイト"""
-            form="ideaform"
-            class="border border-danger" style="width: 50%;">
+            <input required type="text" name="description" id="description" placeholder="アイデアを簡単にまとめれられるサイト" form="ideaform" class="border border-danger" style="width: 50%;">
           </div>
           <div class="form-group">
             <label for="about">
               <h5 style="font-weight: bold;">サービスの簡単な説明をしよう (必須)</h5>
             </label>
             <br>
-            <textarea class="border border-danger" required name="about" rows="3" id="about" placeholder="このサービスは、Webサービスやアプリを作ろうと思ってるけどアイデアがまとまらない！という人をターゲットに様々な質問をもとにアイデアを考えまとめられるサービスで、考えたアイデアは投稿し色々な人達からコメントや資金をもらうことができます。"
-                      form="ideaform"></textarea>
+            <textarea class="border border-danger" required name="about" rows="3" id="about" placeholder="このサービスは、Webサービスやアプリを作ろうと思ってるけどアイデアがまとまらない！という人をターゲットに様々な質問をもとにアイデアを考えまとめられるサービスで、考えたアイデアは投稿し色々な人達からコメントなどがもらえたり、アイデアを簡単に共有できるサービスです" form="ideaform"></textarea>
           </div>
           <div class="form-group">
             <label for="concept">
@@ -80,9 +53,7 @@
               <h5 style="font-weight: bold;">なぜ作る (必須)</h5>
             </label>
             <br>
-            <textarea class="border border-danger" required name="why" rows="4" cols="99" maxlength="200" id="why"
-                      placeholder="「なんとなく作りたいものは浮かんできたけど、アイデアがまとまらない！どうしたら良いのかわからない！」という時にアイデアを簡単にまとめられて、そのアイデアを共有しあうものがあったら、より良いアイデアが浮かんでくるのではないかと思い、このサービスを考えました。"
-                      form="ideaform"></textarea>
+            <textarea class="border border-danger" required name="why" rows="4" cols="99" maxlength="200" id="why" placeholder="「なんとなく作りたいものは浮かんできたけど、アイデアがまとまらない！どうしたら良いのかわからない！」と思うことがあったので、そういう時にアイデアを簡単にまとめられて、そのアイデアを共有しあうものがあったら、より良いアイデアが浮かんでくるのではないかと思い、このサービスを考えました" form="ideaform"></textarea>
           </div>
           <div class="form-group">
             <label for="TextSample_1">サービスのコア機能を決めよう (絶対に必要な機能)</label>
@@ -112,7 +83,7 @@
             </form>
           </div>
           <div class="form-group">
-            <h5>ターゲットユーザー</h5>・年齢
+            <h5 style="font-weight: bold;">ターゲットユーザー</h5>・年齢
             <br>
             <input type="checkbox" name="age[]" value="10" form="ideaform">10代<br>
             <input type="checkbox" name="age[]" value="20" form="ideaform">20代<br>
@@ -126,55 +97,39 @@
             <br>・職業<br>
             <input type="text" name="target_user" placeholder="学生,プログラマー" value="" form="ideaform">
           </div>
-          
           <div class="form-group">
             <label for="whom">誰に使う？</label>
             <br>
-            <input name="whom" id="whom" placeholder=" 何かサイトやアプリを作りたいけど、うまくアイデアがまとまらない人" form="ideaform" style="width: 50%;">
+            <input name="whom" id="whom" placeholder=" 何かサイトやアプリを作りたいけど、うまくアイデアがまとまらないと思ってる人" form="ideaform" style="width: 50%;">
           </div>
           <div class="form-group">
             <label for="when">いつ使う？</label><br>
-            <input style="width: 50%;" name="when" id="when" placeholder="アイデアがしっかりとまとまらない時。" form="ideaform">
+            <input style="width: 50%;" name="when" id="when" placeholder="アイデアがしっかりとまとまらない時" form="ideaform">
           </div>
           <div class="form-group">
             <label for="where">どこで使う？</label><br>
-            <input style="width: 50%;" name="where" id="where" placeholder="パソコンやスマホなどで使えるWebサイト上で！" form="ideaform">
+            <input style="width: 50%;" name="where" id="where" placeholder="パソコンやスマホなどWebアプリでどこでも使えるようにする" form="ideaform">
           </div>
           <div class="form-group">
             <label for="how">どうやって使う？</label>
             <br>
-            <textarea name="how" rows="2" cols="50" maxlength="200" id="how" placeholder=" アイデアを考えるサイトで質問に答えながらアイデアをまとめていく。すぐアイデアを考えるときだけではなく、じっくり考える人でも使える。また、アイデアに対して意見を言える。"
+            <textarea name="how" rows="2" cols="50" maxlength="200" id="how" placeholder="質問に答えてアイデアを簡単にまとめることや、投稿されてるアイデアに対してアドバイスなどをすることができる"
                       form="ideaform"></textarea>
           </div>
           <div class="form-group">
             <label for="howmany">どのくらいの規模？</label>
             <br>
-            <textarea name="howmany" rows="2" cols="50" maxlength="200" id="howmany" placeholder="最初はアイデアがうまくまとまらない、プログラミングスクールの友達に使ってもらえるぐらいの小規模"
-                      form="ideaform"></textarea>
+            <textarea name="howmany" rows="2" cols="50" maxlength="200" id="howmany" placeholder="最初はアイデアがうまくまとまらないプログラミングスクールの友達に使ってもらえるぐらいの小規模で考えている" form="ideaform"></textarea>
           </div>
           <div class="form-group">
             <label for="howmuch">いくらで？</label>
             <br>
-            <input style="width: 50%;" name="howmuch" id="howmuch" placeholder="誰にでも使えるように無料で" form="ideaform">
+            <input style="width: 50%;" name="howmuch" id="howmuch" placeholder="無料で誰でも使えるようにする" form="ideaform">
           </div>
           <div class="form-group">
             <label for="howlong">どのくらいの間で作る？いつリリースする？</label>
             <br>
-            <input style="width: 50%;" name="howlong" id="howlong" placeholder="今年の夏までにベータリリース・デバックして今年中にリリースする！" form="ideaform">
-          </div>
-          <div class="form-group">
-            <label for="TextSample3_1">似ているサービスは？</label>
-            <br>
-            <form name="frmSampleRegist3" method="POST" action="ideaform">
-              <div id="TextSample3"></div>
-              <input type="button" id="btnSampleAdd3" value="追加" onclick="addSample3()">
-              <input type="button" id="btnSampleDel3" value="削除" onclick="delSample3()">
-            </form>
-          </div>
-          <div class="form-group">
-            <label for="servicedifference">そのサービスより優れているところは？</label>
-            <br>
-            <input style="width: 50%;" name="servicedifference" id="servicedifference" placeholder="" form="ideaform">
+            <input style="width: 50%;" name="howlong" id="howlong" placeholder="今年の夏までにベータリリース・デバックして今年中にリリースする" form="ideaform">
           </div>
           <br>
           <div class="form-group">
@@ -195,7 +150,7 @@
             <label for="other">その他・感想・質問</label>
             <br>
             <textarea name="other" id="other" rows="2" cols="50" placeholder="その他、感想や質問はこちら" form="ideaform"></textarea>
-          </div>
+          </div><br>
           <div class="form-group">
             <label for=img>画像を選択</label><br>
             <input id="img" name="file" type="file" form="ideaform">
@@ -208,10 +163,19 @@
     </div>
   </div>
 <% else %>
-
   <body onLoad=setTimeout("location.href='/'")></body>
 <% end %>
 </body>
+<script>
+  function submitChk() {
+    var flag = confirm("投稿してもよろしいですか？\n\n投稿したくない場合は[キャンセル]ボタンを押して下さい");
+    return flag;
+  }
+  function submitChk1() {
+      var flag = confirm("リセットしてもよろしいですか？\n\nリセットしたくない場合は[キャンセル]ボタンを押して下さい");
+      return flag;
+  }
+</script>
 <style>
   input {
     -webkit-border-radius: 3px;

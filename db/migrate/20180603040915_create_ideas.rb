@@ -20,8 +20,6 @@ class CreateIdeas < ActiveRecord::Migration[5.2]
       t.string :howmuch #いくらで？(費用,金額)
       t.string :howlong #どのくらいの間作る？いつまでにリリースする？
       t.string :last #最終的にどうなってほしい？
-      t.string :servicename #似ているサービスは？
-      t.string :servicedifference #そのサービスより優れているところは？
       t.text :email
       t.text :other #その他
       t.text :comment #コメント
