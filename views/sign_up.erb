@@ -12,9 +12,10 @@
 </head>
 
 <body class="text-center">
-    <% if !current_user.nil? %>
-    <% else %>
-    <form class="form-signup" action="/signup" name="signup" id="signup" method="post">
+  <% if !current_user.nil? %>
+      <script type="text/javascript">setTimeout('window.location.href="/"')</script>
+  <% else %>
+  <form class="form-signup" action="/signup" name="signup" id="signup" method="post">
         <h1 class="h3 mb-3 font-weight-normal">新規登録</h1>
         <br>
         <label for="inputUsername" class="sr-only">名前</label>

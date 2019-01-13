@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -12,7 +11,6 @@
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/js/main.js"></script>
 </head>
-
 <body>
 <% if !current_user.nil? %>
   <div class="container" id="information">
@@ -32,167 +30,148 @@
           <% if @idea.about == "" %>
           <% else %>
             <div class="form-group">
-              <h5>サービスの簡単な説明：<%= CGI.escapeHTML(@idea.about) %></h5>
+              <h5><span style="font-weight: bold;">サービスの簡単な説明</span><br><%= CGI.escapeHTML(@idea.about) %></h5>
             </div>
             <br>
           <% end %>
           <% if @idea.concept == "" %>
           <% else %>
             <div class="form-group">
-              <h5>サービスのコンセプト：<%= CGI.escapeHTML(@idea.concept) %></h5>
+              <h5><span style="font-weight: bold;">サービスのコンセプト：</span><%= CGI.escapeHTML(@idea.concept) %></h5>
             </div>
             <br>
           <% end %>
           <% if @idea.name == "" %>
           <% else %>
             <div class="form-group">
-              <h5>サービス名：<%= CGI.escapeHTML(@idea.name) %></h5>
+              <h5><span style="font-weight: bold;">サービス名：</span><%= CGI.escapeHTML(@idea.name) %></h5>
             </div>
             <br>
           <% end %>
           <% if @idea.why == "" %>
           <% else %>
             <div class="form-group">
-              <h5>なぜ作る？：<%= CGI.escapeHTML(@idea.why) %></h5>
+              <h5><span style="font-weight: bold;">なぜ作る？</span><br><%= CGI.escapeHTML(@idea.why) %></h5>
             </div>
             <br>
           <% end %>
           <% if @idea.core == "" %>
           <% else %>
             <div class="form-group">
-              <h5>サービスのコア機能<% eval(@idea.core).each do |core| %><ul><li class="li"><%= core %></li></ul><% end %></h5>
+              <h5><span style="font-weight: bold;">サービスのコア機能</span><% eval(@idea.core).each do |core| %><ul><li class="li"><%= core %></li></ul><% end %></h5>
             </div>
             <br>
           <% end %>
-
           <% if @idea.sab == "" %>
           <% else %>
             <div class="form-group">
-              <h5>サービスのサブ機能<% eval(@idea.sab).each do |sab| %><ul><li class="li"><%= sab %></li></ul><% end %></h5>
+              <h5><span style="font-weight: bold;">サービスのサブ機能</span><% eval(@idea.sab).each do |sab| %><ul><li class="li"><%= sab %></li></ul><% end %></h5>
             </div>
             <br>
           <% end %>
-
           <% if @idea.technology == "" %>
           <% else %>
             <div class="form-group">
-              <h5>どんなデバイス・言語・技術を使う？<% eval(@idea.technology).each do |technology| %><ul><li class="li"><%= technology %></li></ul><% end %></h5>
+              <h5><span style="font-weight: bold;">どんなデバイス・言語・技術を使う？</span><% eval(@idea.technology).each do |technology| %><ul><li class="li"><%= technology %></li></ul><% end %></h5>
             </div>
             <br>
           <% end %>
-
           <div class="form-group">
-            <h5>ターゲットユーザー</h5>
+            <h5><span style="font-weight: bold;">ターゲットユーザー</span></h5>
             <% if @idea.age == "" %>
             <% else %>
               <h5><ul><li class="li">年齢<span><% unless @idea.age.nil? %><%= CGI.escapeHTML(@idea.age) %>代<% end %></span></li></ul></h5>
             <% end %>
-
             <% if @idea.gender == "" %>
             <% else %>
               <h5><ul><li class="li">性別 <span><% unless @idea.gender.nil? %><%= CGI.escapeHTML(@idea.gender) %><% end %></span></li></ul></h5>
             <% end %>
-
             <% if @idea.target_user == "" %>
             <% else %>
               <h5><ul><li class="li">職業 <span><% unless @idea.target_user.nil? %><%= CGI.escapeHTML(@idea.target_user) %><% end %></span></li></ul></h5>
             <% end %>
-
           </div>
           <br>
-
           <% if @idea.whom == "" %>
           <% else %>
             <div class="form-group">
-              <h5 style="display:inline">誰に使う？：<% unless @idea.whom.nil? %><%= CGI.escapeHTML(@idea.whom) %><% end %></h5>
+              <h5 style="display:inline"><span style="font-weight: bold;">誰に使う？：</span><% unless @idea.whom.nil? %><%= CGI.escapeHTML(@idea.whom) %><% end %></h5>
             </div>
             <br>
           <% end %>
-
-
           <% if @idea.when == "" %>
           <% else %>
             <div class="form-group">
-              <h5>いつ使う？：<%= CGI.escapeHTML(@idea.when) %></h5>
+              <h5><span style="font-weight: bold;">いつ使う？：</span><%= CGI.escapeHTML(@idea.when) %></h5>
             </div>
             <br>
           <% end %>
-
           <% if @idea.where == "" %>
           <% else %>
             <div class="form-group">
-              <h5>どこで使う？：<% unless @idea.where.nil? %><%= CGI.escapeHTML(@idea.where) %><% end %></h5>
+              <h5><span style="font-weight: bold;">どこで使う？：</span><% unless @idea.where.nil? %><%= CGI.escapeHTML(@idea.where) %><% end %></h5>
             </div>
             <br>
           <% end %>
-
           <% if @idea.how == "" %>
           <% else %>
             <div class="form-group">
-              <h5>どうやって使う？：<% unless @idea.how.nil? %><%= CGI.escapeHTML(@idea.how) %><% end %></h5>
+              <h5><span style="font-weight: bold;">どうやって使う？：</span><% unless @idea.how.nil? %><%= CGI.escapeHTML(@idea.how) %><% end %></h5>
             </div>
             <br>
           <% end %>
-
           <% if @idea.howmany == "" %>
           <% else %>
             <div class="form-group">
-              <h5>どのくらいの規模？：<% unless @idea.howmany.nil? %><%= CGI.escapeHTML(@idea.howmany) %><% end %></h5>
+              <h5><span style="font-weight: bold;">どのくらいの規模？：</span><% unless @idea.howmany.nil? %><%= CGI.escapeHTML(@idea.howmany) %><% end %></h5>
             </div>
             <br>
           <% end %>
-
           <% if @idea.howmuch == "" %>
           <% else %>
             <div class="form-group">
-              <h5>いくらで？：<% unless @idea.howmuch.nil? %><%= CGI.escapeHTML(@idea.howmuch) %><% end %></h5>
+              <h5><span style="font-weight: bold;">いくらで？：</span><% unless @idea.howmuch.nil? %><%= CGI.escapeHTML(@idea.howmuch) %><% end %></h5>
             </div>
             <br>
           <% end %>
-
           <% if @idea.howlong == "" %>
           <% else %>
             <div class="form-group">
-              <h5>どのくらいの間で作る？いつリリースする？：<% unless @idea.howlong.nil? %><%= CGI.escapeHTML(@idea.howlong) %><% end %></h5>
+              <h5><span style="font-weight: bold;">どのくらいの間で作る？いつリリースする？：</span><% unless @idea.howlong.nil? %><%= CGI.escapeHTML(@idea.howlong) %><% end %></h5>
             </div>
             <br>
           <% end %>
-
           <% if @idea.last == "" %>
           <% else %>
             <div class="form-group">
-              <h5>最終的にどうなってほしい？：<%= CGI.escapeHTML(@idea.last) %></h5>
+              <h5><span style="font-weight: bold;">最終的にどうなってほしい？</span><br><%= CGI.escapeHTML(@idea.last) %></h5>
             </div>
-            <br>
           <% end %>
           <% if @idea.email == "" %>
           <% else %>
             <div class="form-group">
-              <h5>メールアドレス：<% unless @idea.email.nil? %><%= CGI.escapeHTML(@idea.email) %><% end %></div></h5>
-            <br>
+              <h5><span style="font-weight: bold;">メールアドレス：</span><% unless @idea.email.nil? %><%= CGI.escapeHTML(@idea.email) %><% end %></div></h5>
           <% end %>
-
-          <div class="form-group">
-            <p>日付：<%= @idea.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
-          </div>
           <br>
-
           <% if @idea.other == "" %>
           <% else %>
             <div class="form-group">
-              <h5>その他・感想・質問：<% unless @idea.other.nil? %><%= CGI.escapeHTML(@idea.other) %><% end %></h5>
+              <h5><span style="font-weight: bold;">その他・感想・質問</span><br><% unless @idea.other.nil? %><%= CGI.escapeHTML(@idea.other) %><% end %></h5>
             </div>
           <% end %>
+          <br>
+          <div class="form-group">
+            <p><span style="font-weight: bold;">日付：</span><%= @idea.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
+          </div>
+          
 
           <a href="/ideas" class="btn btn-outline-info">戻る</a>
-
         </div>
       </div>
     </div>
   </div>
 <% else %>
-
-  <body onLoad=setTimeout("location.href='/'")></body>
+  <script type="text/javascript">setTimeout('window.location.href="/"')</script>
 <% end %>
 </body>
 

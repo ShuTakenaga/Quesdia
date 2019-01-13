@@ -80,23 +80,22 @@
               <div id="TextSample2"></div>
               <input type="button" id="btnSampleAdd2" value="追加" onclick="addSample2()">
               <input type="button" id="btnSampleDel2" value="削除" onclick="delSample2()">
-            </form>
+            </form><br>
           </div>
           <div class="form-group">
             <h5 style="font-weight: bold;">ターゲットユーザー</h5>・年齢
             <br>
-            <input type="checkbox" name="age[]" value="10" form="ideaform">10代<br>
-            <input type="checkbox" name="age[]" value="20" form="ideaform">20代<br>
-            <input type="checkbox" name="age[]" value="30" form="ideaform">30代<br>
-            <input type="checkbox" name="age[]" value="40" form="ideaform">40代<br>
-            <input type="checkbox" name="age[]" value="50" form="ideaform">50代～<br>
+            <input type="checkbox" name="age[]" value="10" form="ideaform">10代
+            <input type="checkbox" name="age[]" value="20" form="ideaform">20代
+            <input type="checkbox" name="age[]" value="30" form="ideaform">30代
+            <input type="checkbox" name="age[]" value="40" form="ideaform">40代
+            <input type="checkbox" name="age[]" value="50" form="ideaform">50代～
             <br>・性別<br>
             <input type="checkbox" name="gender[]" value="男" form="ideaform">男
             <input type="checkbox" name="gender[]" value="女" form="ideaform">女
-            <br>
             <br>・職業<br>
             <input type="text" name="target_user" placeholder="学生,プログラマー" value="" form="ideaform">
-          </div>
+          </div><br>
           <div class="form-group">
             <label for="whom">誰に使う？</label>
             <br>
@@ -137,8 +136,7 @@
               <h5 style="font-weight: bold;">最終的にどうなってほしい？ (必須)</h5>
             </label>
             <br>
-            <textarea class="border border-danger" required name="last" rows="2" cols="50" maxlength="200" id="last"
-                      placeholder="最終的にはお気に入りやTwitterなどと連携することや資金などを送れるようにしてさらにより良いアイデアを作れるようにする。" form="ideaform"></textarea>
+            <textarea class="border border-danger" required name="last" rows="2" cols="50" maxlength="200" id="last" placeholder="最終的にはお気に入りやTwitterなどと連携することや資金などを送れるようにしてさらにより良いアイデアを作れるようにする。" form="ideaform"></textarea>
           </div>
           <div class="form-group">
             <label for="email">メールアドレス</label>
@@ -150,11 +148,11 @@
             <label for="other">その他・感想・質問</label>
             <br>
             <textarea name="other" id="other" rows="2" cols="50" placeholder="その他、感想や質問はこちら" form="ideaform"></textarea>
-          </div><br>
+          </div>
           <div class="form-group">
             <label for=img>画像を選択</label><br>
             <input id="img" name="file" type="file" form="ideaform">
-          </div>
+          </div><br>
 
           <input type="submit" class="btn btn-info" form="ideaform">
           <input type="reset" class="btn btn-outline-danger" form="ideaform">
@@ -163,7 +161,7 @@
     </div>
   </div>
 <% else %>
-  <body onLoad=setTimeout("location.href='/'")></body>
+  <script type="text/javascript">setTimeout('window.location.href="/"')</script>
 <% end %>
 </body>
 <script>
@@ -234,5 +232,4 @@
     padding-left: 15px;
   }
 </style>
-
 </html>

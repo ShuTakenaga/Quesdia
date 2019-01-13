@@ -13,6 +13,7 @@
 
 <body class="text-center">
     <% if !current_user.nil? %>
+    <script type="text/javascript">setTimeout('window.location.href="/"')</script>
     <% else %>
     <form class="form-signin" name="signin" id="signin" action="/signin" method="post">
         <h1 class="h3 mb-3 font-weight-normal">ログイン</h1><br>

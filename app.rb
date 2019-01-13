@@ -10,6 +10,9 @@ require 'sinatra/flash'
 require 'open-uri'
 require 'sinatra/json'
 require './image_uploader.rb'
+require 'dotenv'
+
+Dotenv.load
 
 enable :sessions
 
@@ -154,11 +157,25 @@ post '/ideas/:id/update' do
   redirect '/ideas'
 end
 
-get '/dashboard' do
-  erb :dashboard
+post '/favorites/:id/update' do
+  if current_user.favorites.where(idea_id: params[:id]).blank? then
+  current_user.favorites.create(
+    idea_id: params[:id]
+  )
+  else
+    fav = current_user.favorites.where(idea_id: params[:id])
+    fav.destroy_all
+  end
+  redirect '/favorites'
 end
 
-post '/dashboard' do
-  flash[:notice] = '画像を変更しました'
-  redirect '/dashboard'
+get '/settings' do
+  erb :settings
+end
+
+post '/information/:id/comment' do
+  idea = Idea.find(params[:id])
+  idea.comments.create(body: params[:body])
+  
+  redirect '/'
 end

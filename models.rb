@@ -19,13 +19,15 @@ class User < ActiveRecord::Base
   validates :mail, uniqueness: true
 
   has_many :favorites
-  has_many :ideas, through: :favorites
+  has_many :comments
+  has_many :ideas, through: :favorites, dependent: :destroy
 end
 
 class Idea < ActiveRecord::Base
   has_many :favorites
   belongs_to :category
   has_many :users, through: :favorites
+  has_many :comments
 end
 
 class Favorite < ActiveRecord::Base
@@ -36,3 +38,8 @@ end
 class Category < ActiveRecord::Base
   has_many :ideas
 end
+
+class Comment < ActiveRecord::Base
+  belongs_to :idea
+end
+
