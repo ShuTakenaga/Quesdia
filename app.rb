@@ -20,8 +20,10 @@ configure :production do
 end
 
 before do
-  if request.path!="/" &&  session[:user].nil?
+  unless request.path=="/" || request.path=="/signin" || request.path=="/signup"
+    if  session[:user].nil?
     redirect '/'
+    end
   end
 end
 
