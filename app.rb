@@ -19,6 +19,12 @@ enable :sessions
 configure :production do
 end
 
+before do
+  if request.path!="/" &&  session[:user].nil?
+    redirect '/'
+  end
+end
+
 helpers do
   def current_user
     User.find_by(id: session[:user])

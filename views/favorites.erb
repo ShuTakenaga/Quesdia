@@ -22,7 +22,6 @@
           <% @fav.each do |fav| %>
           <% unless fav.idea.nil? %>
           <% if fav.user.id == current_user.id %>
-          <% binding.pry %>
             <div class="card" style="width: 50rem;">
               <div class=" card-body">
                 <div class="panel-body">
