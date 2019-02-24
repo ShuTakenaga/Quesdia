@@ -20,13 +20,6 @@
           <span class="glyphicon-glyphicon-triangle-right"></span><span style="font-weight: bold;"><%= CGI.escapeHTML(@idea.description) %></span>
         </div>
         <div class="card-body">
-          <% if @idea.img == "" %>
-          <% else %>
-            <div class="form-group">
-            <img class="card-img-top" src="<%= CGI.escapeHTML(@idea.img) %>" style="width: 25rem;">
-            </div>
-            <br>
-          <% end %>
           <% if @idea.about == "" %>
           <% else %>
             <div class="form-group">
@@ -55,7 +48,6 @@
             </div>
             <br>
           <% end %>
-          <% p @idea.core %>
           <% unless @idea.core == "[\"\"]" || @idea.core== "nil" %>
             <div class="form-group">
               <h5><span style="font-weight: bold;">サービスのコア機能</span><% eval(@idea.core).each do |core| %><ul><li class="li"><%= core %></li></ul><% end %></h5>
@@ -159,6 +151,14 @@
           <div class="form-group">
             <p><span style="font-weight: bold;">日付：</span><%= @idea.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
           </div>
+
+          <% if @idea.img == "" %>
+          <% else %>
+            <div class="form-group">
+            <img class="card-img-top" src="<%= CGI.escapeHTML(@idea.img) %>" style="width: 25rem;">
+            </div>
+            <br>
+          <% end %>
           
 
           <a href="/ideas" class="btn btn-outline-info">戻る</a>
