@@ -25,7 +25,7 @@
               <h5 style="font-weight: bold;">どんなサイト・アプリ？ (必須)</h5>
             </label>
             <br>
-            <input required type="text" name="description" id="description" placeholder="アイデアを簡単にまとめれられるサイト" form="ideaform" class="border border-danger" style="width: 50%;">
+            <input required type="text" name="description" id="description" placeholder="アイデアを簡単にまとめれられるサイト" form="ideaform" class="border border-danger">
           </div>
           <div class="form-group">
             <label for="about">
@@ -45,7 +45,7 @@
             <label for="name">
               <h5>サービス名を決めよう</h5>
             </label><br>
-            <input type="text" name="name" id="name" form="ideaform" placeholder="Quesdia" style="width: 50%;">
+            <input type="text" name="name" id="name" form="ideaform" placeholder="Quesdia">
             <small class="form-text text-muted">サービスのコンセプトが伝わる、どんなサービスなのか、何に関係するサービスなのか、<br>誰がターゲットなのかがサービス名で分かるとサービスをより多くの人に興味を持ってもらうことができます。</small>
           </div>
           <div class="form-group">
@@ -99,21 +99,20 @@
           <div class="form-group">
             <label for="whom">誰に使う？</label>
             <br>
-            <input name="whom" id="whom" placeholder=" 何かサイトやアプリを作りたいけど、うまくアイデアがまとまらないと思ってる人" form="ideaform" style="width: 50%;">
+            <input name="whom" id="whom" placeholder=" 何かサイトやアプリを作りたいけど、うまくアイデアがまとまらないと思ってる人" form="ideaform">
           </div>
           <div class="form-group">
             <label for="when">いつ使う？</label><br>
-            <input style="width: 50%;" name="when" id="when" placeholder="アイデアがしっかりとまとまらない時" form="ideaform">
+            <input name="when" id="when" placeholder="アイデアがしっかりとまとまらない時" form="ideaform">
           </div>
           <div class="form-group">
             <label for="where">どこで使う？</label><br>
-            <input style="width: 50%;" name="where" id="where" placeholder="パソコンやスマホなどWebアプリでどこでも使えるようにする" form="ideaform">
+            <input name="where" id="where" placeholder="パソコンやスマホなどWebアプリでどこでも使えるようにする" form="ideaform">
           </div>
           <div class="form-group">
             <label for="how">どうやって使う？</label>
             <br>
-            <textarea name="how" rows="2" cols="50" maxlength="200" id="how" placeholder="質問に答えてアイデアを簡単にまとめることや、投稿されてるアイデアに対してアドバイスなどをすることができる"
-                      form="ideaform"></textarea>
+            <textarea name="how" rows="2" cols="50" maxlength="200" id="how" placeholder="質問に答えてアイデアを簡単にまとめることや、投稿されてるアイデアに対してアドバイスなどをすることができる" form="ideaform"></textarea>
           </div>
           <div class="form-group">
             <label for="howmany">どのくらいの規模？</label>
@@ -123,12 +122,12 @@
           <div class="form-group">
             <label for="howmuch">いくらで？</label>
             <br>
-            <input style="width: 50%;" name="howmuch" id="howmuch" placeholder="無料で誰でも使えるようにする" form="ideaform">
+            <input name="howmuch" id="howmuch" placeholder="無料で誰でも使えるようにする" form="ideaform">
           </div>
           <div class="form-group">
             <label for="howlong">どのくらいの間で作る？いつリリースする？</label>
             <br>
-            <input style="width: 50%;" name="howlong" id="howlong" placeholder="今年の夏までにベータリリース・デバックして今年中にリリースする" form="ideaform">
+            <input name="howlong" id="howlong" placeholder="今年の夏までにベータリリース・デバックして今年中にリリースする" form="ideaform">
           </div>
           <br>
           <div class="form-group">
@@ -141,7 +140,7 @@
           <div class="form-group">
             <label for="email">メールアドレス</label>
             <br>
-            <input style="width: 50%;" type="email" name="email" id="email" form="ideaform">
+            <input type="email" name="email" id="email" form="ideaform">
             <small class="form-text text-muted">※メールアドレスはアイデア上に公開されます。</small>
           </div>
           <div class="form-group">
@@ -175,13 +174,29 @@
   }
 </script>
 <style>
-  input {
+  
+  @media screen and (min-width: 650px) {
+    input {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
     border-radius: 10px;
     padding: 2px 8px;
     display: inline-block;
+    width: 50%;
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+    input {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-radius: 10px;
+    padding: 2px 8px;
+    display: inline-block;
+    width: 100%;
+    }
   }
 
   textarea {

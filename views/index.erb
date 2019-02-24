@@ -16,20 +16,22 @@
   <div class="container">
     <div class="jumbotron">
       <div class="inner center-block">
-        <h1 style="font-family: MyFont; font-size: 100px;">Quesdia</h1><br>
+        <h1 style="font-family: MyFont; font-size: 100px;"class="br-pc">Quesdia<br></h1>
+        <h1 style="font-family: MyFont; font-size: 85px;" class="br-sp">Quesdia</h1><br>
         <h2 style="font-weight: bold;">思いつきを<br class="br-sp">アイデアに<br>自分だけの<br class="br-sp">アイデアを<br class="br-sp">共有しよう</h2><br>
-        <p>Quesdiaは、<br class="br-sp">様々な質問に答えるだけで<br class="br-sp">アイデアを簡単にまとめられて、<br class="br-sp">共有できるサービスです</p><br>
+        <p>Quesdiaは<br class="br-sp">様々な質問に答えるだけで<br class="br-sp">アイデアを簡単にまとめられて<br class="br-sp">共有できるサービスです。</p><br>
+        
         <% if !current_user.nil? %>
         <% else%>
         <div>
-          <a class="btn btn-outline-primary btn-lg" href='/signup'>無料ではじめる</a><br class="br-sp"><br class="br-sp"><br class="br-sp">
+          <a class="btn btn-outline-primary btn-lg" href='/signup'>無料ではじめる</a>
         </div>
         <% end %>
-      </div>
+      </div><br class="br-sp">
     </div>
   </div>
   <div id="footer">
-    <footer class="footer">
+    <footer class="footer"><br class="br-pc">
       <p class="text-center text-muted">Copyright &copy; 2019 Quesdia All Rights Reserved.  
         <a href="https://twitter.com/Quesdia_jp" target="blank">
           <title>Twitter</title>
@@ -47,9 +49,6 @@
   html {
     height: 100%;
   }
-
-
-
 
   #container {
     width: 100%;
@@ -77,8 +76,20 @@
     background-size: cover;
     background-position: left center;
     color: white;
-    height: 500px;
+    height: 100%;
     width: 100%;
+  }
+
+  @media screen and (max-width: 650px) {
+    .jumbotron {
+    background-image: url('image/bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left center;
+    color: white;
+    height: 900%;
+    width: 100%;
+  }
   }
 
   @font-face {
