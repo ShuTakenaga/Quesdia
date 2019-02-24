@@ -12,6 +12,7 @@
   <script type="text/javascript" src="/js/main.js"></script>
 </head>
 <body class="text-center">
+<div class="wrapper">
   <div class="container">
     <div class="jumbotron">
       <div class="inner center-block">
@@ -21,7 +22,7 @@
         <% if !current_user.nil? %>
         <% else%>
         <div>
-          <a class="btn btn-outline-primary btn-lg" href='/signup'>無料ではじめる</a>
+          <a class="btn btn-outline-primary btn-lg" href='/signup'>無料ではじめる</a><br class="br-sp"><br class="br-sp"><br class="br-sp">
         </div>
         <% end %>
       </div>
@@ -38,6 +39,7 @@
       </p>
     </footer>
   </div>
+</div>
 </body>
 </html>
 <style>
@@ -45,6 +47,9 @@
   html {
     height: 100%;
   }
+
+
+
 
   #container {
     width: 100%;

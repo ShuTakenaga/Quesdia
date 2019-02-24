@@ -51,14 +51,7 @@ ul {
   background: #9FC;
 }
 
-#footer {
-  clear: both;
-  text-align: center;
-  height: 50px;
-  line-height: 50px;
-  /* line-heightとheightの高さをあわせる */
-  background: #FF9933;
-}
+
 
 table {
   border-collapse: separate;
@@ -86,6 +79,8 @@ textarea {
 }
 
 @media screen and (min-width: 650px) {
+
+  /* パソコンの時 */
   .br-pc {
     display: block;
   }
@@ -93,9 +88,16 @@ textarea {
   .br-sp {
     display: none;
   }
+
 }
 
 @media screen and (max-width: 650px) {
+  /* スマホの時 */
+
+  .wrapper {
+    min-height: 100vh;
+  }
+
   .br-pc {
     display: none;
   }
