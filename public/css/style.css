@@ -84,3 +84,23 @@ textarea {
   width: 100%;
   height: 5em;
 }
+
+@media screen and (min-width: 650px) {
+  .br-pc {
+    display: block;
+  }
+
+  .br-sp {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .br-pc {
+    display: none;
+  }
+
+  .br-sp {
+    display: block;
+  }
+}

@@ -33,7 +33,7 @@
                   <p><span style="font-weight: bold;">コンセプト</span><br><%= idea.concept %></p><br>
 
                   <% unless idea.img.empty? %>
-                    <a href="<%= idea.img %>" class="image"><img class="card-img-top" src="<%= idea.img %>" style="width: 10%;"></a>
+                    <a href="<%= idea.img %>" class="image"><img class="card-img-top" src="<%= idea.img %>" style="width: 20%;"></a>
                   <% end %>
                   
                   <p><%= idea.created_at.in_time_zone('Japan').strftime("%Y-%m-%d %H:%M:%S") %></p>
