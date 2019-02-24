@@ -56,19 +56,19 @@
             <br>
           <% end %>
           <% p @idea.core %>
-          <% unless @idea.core == "[\"\"]" || @idea.core.nil? %>
+          <% unless @idea.core == "[\"\"]" || @idea.core== "nil" %>
             <div class="form-group">
               <h5><span style="font-weight: bold;">サービスのコア機能</span><% @idea.core.each do |core| %><ul><li class="li"><%= core %></li></ul><% end %></h5>
             </div>
             <br>
           <% end %>
-          <% unless @idea.sab == "[\"\"]" || @idea.core.nil? %>
+          <% unless @idea.sab == "[\"\"]" || @idea.sab== "nil" %>
             <div class="form-group">
               <h5><span style="font-weight: bold;">サービスのサブ機能</span><% @idea.sab.each do |sab| %><ul><li class="li"><%= sab %></li></ul><% end %></h5>
             </div>
             <br>
           <% end %>
-          <% unless @idea.technology == "[\"\"]"|| @idea.core.nil?%>
+          <% unless @idea.technology == "[\"\"]"|| @idea.technology== "nil"%>
             <div class="form-group">
               <h5><span style="font-weight: bold;">どんなデバイス・言語・技術を使う？</span><% @idea.technology.each do |technology| %><ul><li class="li"><%= technology %></li></ul><% end %></h5>
             </div>
