@@ -17,7 +17,7 @@
     <div class="row">
       <div class="card" style="width: 1200px;">
         <div class="card-header" style="background: #10a0e0; color: #fff;">
-          <span class="glyphicon-glyphicon-triangle-right"></span><%= CGI.escapeHTML(@idea.description) %>
+          <span class="glyphicon-glyphicon-triangle-right"></span><span style="font-weight: bold;"><%= CGI.escapeHTML(@idea.description) %></span>
         </div>
         <div class="card-body">
           <% if @idea.img == "" %>
@@ -55,22 +55,19 @@
             </div>
             <br>
           <% end %>
-          <% if @idea.core == "" %>
-          <% else %>
+          <% unless @idea.core == "[\"\"]" %>
             <div class="form-group">
               <h5><span style="font-weight: bold;">サービスのコア機能</span><% eval(@idea.core).each do |core| %><ul><li class="li"><%= core %></li></ul><% end %></h5>
             </div>
             <br>
           <% end %>
-          <% if @idea.sab == "" %>
-          <% else %>
+          <% unless @idea.sab == "[\"\"]" %>
             <div class="form-group">
               <h5><span style="font-weight: bold;">サービスのサブ機能</span><% eval(@idea.sab).each do |sab| %><ul><li class="li"><%= sab %></li></ul><% end %></h5>
             </div>
             <br>
           <% end %>
-          <% if @idea.technology == "" %>
-          <% else %>
+          <% unless @idea.technology == "[\"\"]"%>
             <div class="form-group">
               <h5><span style="font-weight: bold;">どんなデバイス・言語・技術を使う？</span><% eval(@idea.technology).each do |technology| %><ul><li class="li"><%= technology %></li></ul><% end %></h5>
             </div>
@@ -78,17 +75,15 @@
           <% end %>
           <div class="form-group">
             <h5><span style="font-weight: bold;">ターゲットユーザー</span></h5>
-            <% if @idea.age == "" %>
-            <% else %>
-              <h5><ul><li class="li">年齢<span><% unless @idea.age.nil? %><%= CGI.escapeHTML(@idea.age) %>代<% end %></span></li></ul></h5>
+            <% unless @idea.age.nil? %>
+              <h5><ul><li class="li">年齢<span><%= CGI.escapeHTML(@idea.age) %>代</span></li></ul></h5>
             <% end %>
-            <% if @idea.gender == "" %>
-            <% else %>
-              <h5><ul><li class="li">性別 <span><% unless @idea.gender.nil? %><%= CGI.escapeHTML(@idea.gender) %><% end %></span></li></ul></h5>
+            <% unless @idea.gender.nil? %>
+              <h5><ul><li class="li">性別 <span><%= CGI.escapeHTML(@idea.gender) %></span></li></ul></h5>
             <% end %>
-            <% if @idea.target_user == "" %>
-            <% else %>
-              <h5><ul><li class="li">職業 <span><% unless @idea.target_user.nil? %><%= CGI.escapeHTML(@idea.target_user) %><% end %></span></li></ul></h5>
+            <% unless @idea.target_user.nil? %>
+              <% else %>
+              <h5><ul><li class="li">職業 <span><%= CGI.escapeHTML(@idea.target_user) %></span></li></ul></h5>
             <% end %>
           </div>
           <br>
@@ -151,15 +146,15 @@
           <% else %>
             <div class="form-group">
               <h5><span style="font-weight: bold;">メールアドレス：</span><% unless @idea.email.nil? %><%= CGI.escapeHTML(@idea.email) %><% end %></div></h5>
+            <br>
           <% end %>
-          <br>
           <% if @idea.other == "" %>
           <% else %>
             <div class="form-group">
               <h5><span style="font-weight: bold;">その他・感想・質問</span><br><% unless @idea.other.nil? %><%= CGI.escapeHTML(@idea.other) %><% end %></h5>
             </div>
+            <br>
           <% end %>
-          <br>
           <div class="form-group">
             <p><span style="font-weight: bold;">日付：</span><%= @idea.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
           </div>

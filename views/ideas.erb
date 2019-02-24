@@ -6,10 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/style.css" rel="stylesheet">
-  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" href="/css/modaal.css">
+  <script src='//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+  <script src="/js/modaal.js"></script>
   <script type="text/javascript" src="/js/popper.js"></script>
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/js/main.js"></script>
+  
 </head>
 <body>
 <% if !current_user.nil? %>
@@ -20,7 +23,7 @@
           <div class="panel-body"></div>
           <h2 style="font-weight: bold;">アイデア一覧</h2>
           <% @ideas.each do |idea| %>
-            <div class="card" style="width: 50rem;">
+            <div class="card" style="width: 100%;">
               <div class=" card-body">
                 <div class="panel-body">
                   <p><%= User.find(idea.user_id).username %> さん</p>
@@ -28,9 +31,11 @@
                   <%= idea.description %></a></h2>
                   <p><span style="font-weight: bold;">サービスの説明</span><br><%= idea.about %></p><br>
                   <p><span style="font-weight: bold;">コンセプト</span><br><%= idea.concept %></p><br>
+
                   <% unless idea.img.empty? %>
-                    <img class="card-img-top" src="<%= idea.img %>" style="width: 22.5rem;">
+                    <a href="<%= idea.img %>" class="image"><img class="card-img-top" src="<%= idea.img %>" style="width: 10%;"></a>
                   <% end %>
+                  
                   <p><%= idea.created_at.in_time_zone('Japan').strftime("%Y-%m-%d %H:%M:%S") %></p>
                   <% unless idea.user_id.nil? %>
                     <% if idea.user_id == current_user.id %>
@@ -72,4 +77,8 @@
     var flag = confirm("削除してもよろしいですか？\n\n削除したくない場合は[キャンセル]ボタンを押して下さい");
     return flag;
   }
+
+  $('.image').modaal({
+    type: 'image'
+});
 </script>

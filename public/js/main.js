@@ -25,9 +25,6 @@ function addSample() {
   if (this.SampleNum == 1) {
     document.frmSampleRegist.btnSampleDel.disabled = true;
   }
-  if (document.getElementById('TextSample_' + this.SampleNum).value == "") {
-    text.setAttribute("disabled", "disabled");
-  }
 }
 
 function delSample() {
