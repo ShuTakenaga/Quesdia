@@ -55,6 +55,7 @@
             </div>
             <br>
           <% end %>
+          <% p @idea.core %>
           <% unless @idea.core == "[\"\"]" %>
             <div class="form-group">
               <h5><span style="font-weight: bold;">サービスのコア機能</span><% @idea.core.each do |core| %><ul><li class="li"><%= core %></li></ul><% end %></h5>
