@@ -8,7 +8,6 @@ function addSample() {
   text.type = 'text';
   text.id = 'TextSample_' + this.SampleNum;
   text.name = 'core[]';
-  text.setAttribute("style", "width: 30%;");
   text.setAttribute("form", "ideaform");
   text.setAttribute("placeholder", "アイデアをまとめられる");
   text.value = '';
@@ -48,7 +47,6 @@ function addSample1() {
   text1.type = 'text1';
   text1.id = 'TextSample1_' + this.SampleNum1;
   text1.name = 'sab[]';
-  text1.setAttribute("style", "width: 30%;");
   text1.setAttribute("form", "ideaform");
   text1.setAttribute("placeholder", "カテゴリごとに分ける");
   text1.value = '';
@@ -88,7 +86,6 @@ function addSample2() {
   text2.type = 'text2';
   text2.id = 'TextSample2_' + this.SampleNum2;
   text2.name = 'technology[]';
-  text2.setAttribute("style", "width: 30%;");
   text2.setAttribute("form", "ideaform");
   text2.setAttribute("placeholder", "Ruby(Sinatra)");
   text2.value = '';
